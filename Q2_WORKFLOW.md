@@ -1,316 +1,176 @@
-# Workflow Huong Toi Bai Bao Q2 Cho AuraBeam
+# Workflow Hướng Tới Bài Báo Q2 Cho AuraBeam
 
-## 1. Muc tieu cua workflow
+## 1. Mục tiêu của workflow
 
-File nay chuyen cac y tuong cai tien thanh mot lo trinh co the thuc thi de dua `AuraBeam` tu muc do do an / paper som len muc do bai bao Q2.
+File này chuyển các ý tưởng cải tiến thành một lộ trình có thể thực thi để đưa `AuraBeam` từ mức độ đồ án / paper sơm lên mức độ bài báo Q2.
 
-Muc tieu khong phai la "them that nhieu ket qua", ma la:
+Mục tiêu không phải là "thêm thật nhiều kết quả", mà là:
 
-- Chot dong gop khoa hoc ro rang.
-- Xay dung protocol thi nghiem chat che.
-- Chay ablation day du va co y nghia.
-- Bao cao thong ke dung chuan.
-- Trinh bay ket qua sach, thuyet phuc, va kho bi reviewer bat loi.
+- Chốt đóng góp khoa học rõ ràng.
+- Xây dựng protocol thí nghiệm chặt chẽ.
+- Chạy ablation đầy đủ và có ý nghĩa.
+- Báo cáo thống kê đúng chuẩn.
+- Trình bày kết quả sạch, thuyết phục, và khó bị reviewer bắt lỗi.
 
-## 2. Dinh vi bai bao
+## 2. Định vị bài báo
 
-Truoc khi lam them experiment, can chot lai bai nay la mot paper ve `system robustness for ADB under glare-induced camera failure`, khong phai paper phat minh detector moi.
+Trước khi làm thêm experiment, cần chốt lại bài này là một paper về `system robustness for ADB under glare-induced camera failure`, không phải paper phát minh detector mới.
 
-Ba claim nen duoc giu on dinh trong toan bo bai:
+Ba claim nên được giữ ổn định trong toàn bộ bài:
 
-1. `Ensemble + Weighted NMS` giup tang robustness cua perception duoi blooming, glare, scattering.
-2. `3D KF + pseudo-radar + adaptive switching` giup duy tri tracking va glare suppression khi camera bi mu.
-3. Cai thien perception/tracking phai duoc chung minh o muc `control outcome`, khong chi o muc `mAP` hay `RMSE`, ma bang `GSSR`, `MGR`, `FDR`.
+1. `Ensemble + Weighted NMS` giúp tăng robustness của perception dưới blooming, glare, scattering.
+2. `3D KF + pseudo-radar + adaptive switching` giúp duy trì tracking và glare suppression khi camera bị mù.
+3. Cải thiện perception/tracking phải được chứng minh ở mức `control outcome`, không chỉ ở mức `mAP` hay `RMSE`, mà bằng `GSSR`, `MGR`, `FDR`.
 
-Neu mot experiment khong phuc vu it nhat mot claim tren, can xem xet bo.
+Nếu một experiment không phục vụ ít nhất một claim trên, cần xem xét bỏ.
 
-## 3. Nguyen tac uu tien
+## 3. Nguyên tắc ưu tiên
 
-Thu tu uu tien dung:
+Thứ tự ưu tiên đúng:
 
-1. Siet protocol va evaluation.
-2. Bo sung baseline va ablation.
-3. Bao cao thong ke.
-4. Lam sach bang, hinh, narrative.
-5. Chi retrain model khi co bang chung detector la nut that chinh.
+1. Siết protocol và evaluation.
+2. Bổ sung baseline và ablation.
+3. Báo cáo thống kê.
+4. Làm sạch bảng, hình, narrative.
+5. Chỉ retrain model khi có bằng chứng detector là nút thắt chính.
 
-Khong nen retrain ngay neu:
+Không nên retrain ngay nếu:
 
-- Baseline chua day du.
-- Ablation chua tach duoc dong gop tung module.
-- Chua co `mean +- std`.
-- Chua co significance test.
-- Chua co hinh dinh tinh quan trong.
+- Baseline chưa đầy đủ.
+- Ablation chưa tách được đóng góp từng module.
+- Chưa có `mean +- std`.
+- Chưa có significance test.
+- Chưa có hình định tính quan trọng.
 
-## 4. Ke hoach tong the theo giai doan
+## 4. Kế hoạch tổng thể theo giai đoạn (tối ưu cho 3 tuần)
 
-### Giai doan 1. Khoa protocol nghien cuu
+### Giai đoạn 1. Khóa protocol nghiên cứu (Ngày 1-2)
 
-Muc tieu:
+Mục tiêu:
+- Có một protocol có thể lặp lại.
+- Xác định rõ dữ liệu nào dùng để train, val, test.
+- Xác định metric chính và metric phụ.
 
-- Co mot protocol co the lap lai.
-- Xac dinh ro du lieu nao dung de train, val, test.
-- Xac dinh metric chinh va metric phu.
-
-Cong viec:
-
-1. Chot lai cac split:
-   - `train`
-   - `validation`
-   - `golden test`
-2. Ghi ro:
-   - so luong mau moi split
-   - tieu chi chia split
-   - co hay khong overlap theo video / scene
-3. Khoa metric chinh:
-   - `GSSR`
-   - `MGR`
-   - `FDR`
-4. Khoa metric phu:
-   - `RMSE_xy`
-   - `JR%`
-   - `IDF1` neu mo rong tracking nhieu target
-   - latency / FPS
-5. Khoa seed va cach lap lai:
-   - nen co `n = 3` toi thieu
-   - tot hon la `n = 5`
+Công việc:
+1. Chốt lại các split: `train`, `validation`, `golden test`
+2. Ghi rõ: số lượng mẫu mỗi split, tiêu chí chia split
+3. Khóa metric chính: `GSSR`, `MGR`, `FDR`
+4. Khóa metric phụ: `RMSE_xy`, `JR%`, latency / FPS
+5. Khóa seed và cách lặp lại: `n = 3` tối thiểu
 
 Deliverable:
+- Một file cấu hình experiment.
+- Bảng protocol trong paper.
 
-- Mot bang protocol trong paper.
-- Mot file ghi cau hinh experiment.
+### Giai đoạn 2. Hoàn thiện baseline tracking (Ngày 3-7)
 
-Tieu chi hoan thanh:
+Mục tiêu:
+- Chứng minh rõ phần gain đến từ đâu.
+- Tách bạch perception gain và fusion gain.
 
-- Bat ky ket qua nao dua vao paper deu phai truy nguon ve cung mot protocol.
-
-### Giai doan 2. Hoan thien baseline tracking
-
-Muc tieu:
-
-- Chung minh ro phan gain den tu dau.
-- Tach bach perception gain va fusion gain.
-
-Bat buoc phai co 4 baseline tracking:
-
+Bắt buộc phải có 4 baseline tracking:
 1. `raw detector`
 2. `detector + 2D KF`
 3. `detector + 3D KF without mode switching`
 4. `detector + 3D KF + pseudo-radar + adaptive switching`
 
-Y nghia khoa hoc:
+Ý nghĩa khoa học:
+- `(1) -> (2)` do tác động của smoothing 2D.
+- `(2) -> (3)` do tác động của state 3D nhưng chưa có adaptive logic.
+- `(3) -> (4)` do tác động thực sự của `adaptive switching`.
 
-- `(1) -> (2)` do tac dong cua smoothing 2D.
-- `(2) -> (3)` do tac dong cua state 3D nhung chua co adaptive logic.
-- `(3) -> (4)` do tac dong thuc su cua `adaptive switching`.
-
-Metric can bao cao:
-
-- `RMSE_xy`
-- `JR%`
-- `GSSR`
-- `MGR`
-- `FDR`
+Metric cần báo cáo:
+- `RMSE_xy`, `JR%`, `GSSR`, `MGR`, `FDR`
 
 Deliverable:
+- 1 bảng tracking baseline comparison.
+- 1 hình trajectory qualitative: lightning hoặc rain.
 
-- 1 bang tracking baseline comparison.
-- 2 hinh trajectory qualitative:
-  - lightning
-  - rain / long dropout
+### Giai đoạn 3. Ablation quan trọng (Ngày 8-9)
 
-Tieu chi hoan thanh:
+Mục tiêu:
+- Chứng minh từng thành phần có giá trị riêng (tác động riêng).
 
-- Reader nhin vao phai thay ro vi sao `adaptive 3D fusion` can thiet, khong chi "KF nao cung duoc".
-
-### Giai doan 3. Ablation chi tiet hon
-
-Muc tieu:
-
-- Chung minh tung thanh phan co gia tri rieng.
-
-Ablation bat buoc:
-
-1. `single model vs ensemble`
-2. `Weighted NMS vs standard NMS`
-3. `no hold-time vs hold-time`
-4. `fixed full-observation vs adaptive switching`
-
-Neu du thoi gian, bo sung:
-
-5. `single specialized model vs general model vs ensemble`
-6. `vision-only 3D KF vs 3D KF + pseudo-radar`
-
-Moi ablation nen tra loi mot cau hoi reviewer:
-
-- Ensemble co that su can thiet khong?
-- Weighted NMS co tot hon NMS thuong khong?
-- Hold-time co giam flicker hay chi tao lag?
-- Adaptive switching co tot hon fixed observation khong?
+Ablation bắt buộc:
+1. `single model vs ensemble` - kiểm chứng Weighted NMS
+2. `fixed full-observation vs adaptive switching` - kiểm chứng điều chỉnh theo camera state
 
 Deliverable:
+- 1 bảng ablation chính (ensemble + switching).
 
-- 1 bang ablation chinh.
-- 1 bang ablation phu neu so lieu nhieu.
+### Giai đoạn 4. Báo cáo thống kê (Ngày 10-11)
 
-Tieu chi hoan thanh:
+Mục tiêu:
+- Nâng kết quả từ "một lần chạy đẹp" thành "kết quả đáng tin cây".
 
-- Moi thanh phan trong he thong deu co bang chung dinh luong.
-
-### Giai doan 4. Sensitivity analysis
-
-Muc tieu:
-
-- Cho thay he thong khong chi "tinh co chon dung tham so".
-
-Thong so can quet:
-
-- nguong `tau_conf`
-- nguong `tau_NMS`
-- hold-time `T_h`
-- process noise `Q`
-- measurement noise `R`
-
-Cach lam:
-
-1. Quet tung tham so mot, giu co dinh cac tham so con lai.
-2. Danh gia tren:
-   - full test set
-   - hard subset, dac biet la lightning va curved road
-3. Ve duong cong:
-   - `GSSR`
-   - `MGR`
-   - `FDR`
-   - latency neu co tac dong
+Bắt buộc:
+- Tính `mean +- std` cho các baseline và ablation (n=3).
+- Chạy `paired t-test` cho so sánh quan trọng:
+  - single vs ensemble
+  - 3D KF without switching vs 3D KF + adaptive switching
+  - best baseline vs full AuraBeam
 
 Deliverable:
+- Bảng kết quả có cột: mean, std, p-value.
 
-- 1 hinh sensitivity cho `tau_conf`, `tau_NMS`, `T_h`
-- 1 hinh hoac bang phu cho `Q/R`
+### Giai đoạn 5. Nâng cấp qualitative evidence (Ngày 12-14)
 
-Tieu chi hoan thanh:
+Mục tiêu:
+- Giảm sự trừu tượng.
+- Cho thấy system hoạt động đúng ở các failure case.
 
-- Chon tham so co ly do ro rang, khong phai "empirically chosen" mot cach mo ho.
+Bắt buộc phải có các hình sau:
+1. `YOLO-only fail` -> `AuraBeam recover`
+2. `Occlusion interval` và tracking stability
 
-### Giai doan 5. Bao cao thong ke
-
-Muc tieu:
-
-- Nang ket qua tu "mot lan chay dep" thanh "ket qua dang tin cay".
-
-Bat buoc:
-
-- Bao cao `mean +- std`
-- Neu co the, them significance test don gian
-
-Kien nghi:
-
-- Neu so sanh theo cung scenario/frame: dung `paired t-test`
-- Neu phan phoi khong dep hoac nho: dung `Wilcoxon signed-rank`
-
-So sanh uu tien:
-
-1. `single model` vs `ensemble`
-2. `2D KF` vs `3D KF without switching`
-3. `fixed full-observation` vs `adaptive switching`
-4. `best baseline` vs `full AuraBeam`
+Gợi ý:
+- Nên có caption rất cụ thể.
+- Mỗi hình phải phục vụ một claim.
 
 Deliverable:
+- 1 figure qualitative comparison (failure + recovery).
+- 1 figure timeline (nếu có thời gian).
 
-- Bang ket qua co cot:
-  - mean
-  - std
-  - p-value neu co
+### Giai đoạn 6. Làm sạch manuscript (Ngày 15-21)
 
-Tieu chi hoan thanh:
+Mục tiêu:
+- Biến bản thảo thành bản gửi journal.
 
-- Reviewer khong the noi rang gain la do may man hoac mot scenario le.
-
-### Giai doan 6. Nang cap qualitative evidence
-
-Muc tieu:
-
-- Giam su tru tuong.
-- Cho thay system hoat dong dung o cac failure case quan trong.
-
-Bat buoc phai co cac hinh sau:
-
-1. `YOLO-only fail`
-2. `AuraBeam recover`
-3. `grid mapping dung / sai`
-4. `occlusion interval`
-5. `input frame -> detection -> fused track -> 8x8 suppression grid`
-
-Goi y:
-
-- Nen co caption rat cu the.
-- Mỗi hinh phai phuc vu mot claim.
+Danh sách bắt buộc:
+1. Sửa các bảng đã có, đảm bảo format và số liệu không có lỗi.
+2. Viết Results: miêu tả bảng và hình, hoàn thiện.
+3. Viết Discussion: giải thích vì sao, nối về claim.
+4. Sửa limitations: trung thực và có construction.
+5. Kiểm tra cross-reference: banner, hình, notation.
 
 Deliverable:
+- Bản `report.tex` đã đồng nhất notation, bảng, hình, caption.
 
-- 1 figure pipeline tong quan dep.
-- 1 figure qualitative comparison split-screen.
-- 1 figure timeline cho occlusion.
+## 5. Experiment matrix để thực thi
 
-Tieu chi hoan thanh:
+### Nhóm A. Perception
 
-- Nguoi doc khong can doc het cong thuc van hieu ngay bai nay giai quyet loi gi.
-
-### Giai doan 7. Lam sach manuscript
-
-Muc tieu:
-
-- Bien ban thao thanh ban gui journal, khong con dau vet do an.
-
-Danh sach bat buoc:
-
-1. Sua cac bang chua sach, dac biet:
-   - `Table 5` dang co dau hieu lap cot / lap so lieu
-2. Giai thich ngan gon `JR% am`
-3. Dam bao ten model, training protocol, implementation, va paper khop nhau
-4. Bo placeholder figure bang hinh that
-5. Kiem tra lai logic giua:
-   - methodology
-   - implementation
-   - results
-6. Viet lai limitations theo giong journal:
-   - ro rang
-   - trung thuc
-   - co dinh huong future work
-
-Deliverable:
-
-- Ban `report.tex` da dong nhat notation, bang, hinh, caption, references.
-
-Tieu chi hoan thanh:
-
-- Ban thao doc lien mach, khong co cho nao lam reviewer mat niem tin.
-
-## 5. Experiment matrix de thuc thi
-
-### Nhom A. Perception
-
-| ID | Cau hinh | Muc dich |
+| ID | Cấu hình | Mục đích |
 | --- | --- | --- |
 | A1 | single model M1 | baseline specialist |
 | A2 | single model M2 | baseline generalist |
-| A3 | ensemble + standard NMS | tach tac dong ensemble va fusion rule |
-| A4 | ensemble + Weighted NMS | cau hinh de xuat |
+| A3 | ensemble + standard NMS | tách tác động ensemble và fusion rule |
+| A4 | ensemble + Weighted NMS | cấu hình đề xuất |
 
 Metric:
 
 - mAP@0.5
 - Precision
 - Recall
-- GSSR sau khi dua qua pipeline control neu can
+- GSSR sau khi đưa qua pipeline control nếu cần
 
-### Nhom B. Tracking and fusion
+### Nhóm B. Tracking and fusion
 
-| ID | Cau hinh | Muc dich |
+| ID | Cấu hình | Mục đích |
 | --- | --- | --- |
-| B1 | raw detector | baseline toi thieu |
-| B2 | detector + 2D KF | gain tu smoothing 2D |
-| B3 | detector + 3D KF no switching | gain tu state 3D |
+| B1 | raw detector | baseline tối thiểu |
+| B2 | detector + 2D KF | gain từ smoothing 2D |
+| B3 | detector + 3D KF no switching | gain từ state 3D |
 | B4 | detector + 3D KF + pseudo-radar + adaptive switching | full AuraBeam |
 
 Metric:
@@ -321,14 +181,14 @@ Metric:
 - MGR
 - FDR
 
-### Nhom C. Control and scheduling
+### Nhóm C. Control and scheduling
 
-| ID | Cau hinh | Muc dich |
+| ID | Cấu hình | Mục đích |
 | --- | --- | --- |
 | C1 | no hold-time | baseline |
 | C2 | hold-time enabled | anti-flicker |
-| C3 | fixed observation | khong co switching |
-| C4 | adaptive switching | cau hinh de xuat |
+| C3 | fixed observation | không có switching |
+| C4 | adaptive switching | cấu hình đề xuất |
 
 Metric:
 
@@ -337,123 +197,149 @@ Metric:
 - FDR
 - box command change rate
 
-### Nhom D. Sensitivity
+### Nhóm D. Sensitivity
 
-| Nhom tham so | Bien |
+| Nhóm tham số | Biến |
 | --- | --- |
 | detector threshold | `tau_conf` |
 | fusion threshold | `tau_NMS` |
 | temporal smoothing | `T_h` |
 | filter dynamics | `Q`, `R` |
 
-## 6. Cach ra quyet dinh co retrain hay khong
+## 6. Cách ra quyết định có retrain hay không
 
-Khong retrain ngay neu:
+Không retrain ngay nếu:
 
-- Full AuraBeam da thang ro o `GSSR/MGR/FDR`.
-- Diem yeu hien tai chu yeu la thieu baseline, thieu statistics, thieu qualitative.
-- Reviewer co the bi thuyet phuc bang system-level evidence.
+- Full AuraBeam đã thắng rõ ở `GSSR/MGR/FDR`.
+- Điểm yếu hiện tại chủ yếu là thiếu baseline, thiếu statistics, thiếu qualitative.
+- Reviewer có thể bị thuyết phục bằng system-level evidence.
 
-Nen retrain neu:
+Nên retrain nếu:
 
-- `single vs ensemble` chua thuyet phuc.
-- Recall tren hard cases qua thap.
-- Weighted NMS khong giup nhieu.
-- Gain cua full system bi gioi han boi detector.
-- Training section khong du nghiem tuc cho journal muc tieu.
+- `single vs ensemble` chưa thuyết phục.
+- Recall trên hard cases quá thấp.
+- Weighted NMS không giúp nhiều.
+- Gain của full system bị giới hạn bởi detector.
+- Training section không đủ nghiêm túc cho journal mục tiêu.
 
-Neu retrain, phai lam theo protocol:
+Nếu retrain, phải làm theo protocol:
 
-1. Khoa lai split.
-2. Train lai cong bang cho single va ensemble.
-3. Luu seed, augmentation, epoch, early stopping.
-4. Bao cao tren cung mot test set.
+1. Khóa lại split.
+2. Train lại công bằng cho single và ensemble.
+3. Lưu seed, augmentation, epoch, early stopping.
+4. Báo cáo trên cùng một test set.
 
-## 7. Lich trinh de xuat 8 tuan
+## 7. Lịch trình đề xuất 3 tuần
 
-### Tuan 1
+### Tuần 1 (Ngày 1-7): Khóa protocol và chạy baseline
 
-- Chot claim.
-- Chot protocol.
-- Chot metric.
-- Chot experiment matrix.
+**Ngày 1-2: Đồng nhất và chốt**
+- Chốt claim và 3 claim chính.
+- Chốt protocol: train/val/test split, metric, n=3 lập tối thiểu.
+- Chốt experiment matrix: chọn 6-8 config tối quan trọng (bổ sung config phụ).
+- Chốt bảng caption và hình layout template.
 
-### Tuan 2
+**Ngày 3-5: Implement và chạy baseline**
+- Implement đầy đủ 4 baseline tracking: B1, B2, B3, B4.
+- Implement ablation quan trọng: ensemble (A1 vs A4), switching (B3 vs B4).
+- Chạy trên golden test set, lưu chi tiết kết quả theo scenario.
 
-- Implement day du baseline tracking.
-- Implement cac co ablation can thiet.
+**Ngày 6-7: Kiểm tra kết quả sơ cấp**
+- So sánh baseline tracking: RMSE_xy, JR%, GSSR, MGR, FDR.
+- Kiểm tra xem baseline đã rõ chưa (phải thấy rõ vì sao B4 tốt hơn B1).
+- Nếu baseline còn mố tay, dừng lại debugg immediately.
 
-### Tuan 3
+### Tuần 2 (Ngày 8-14): Chạy ablation đầy đủ và statistics
 
-- Chay perception ablation.
-- Chay tracking baseline.
-- Luu ket qua theo scenario va theo lan lap.
+**Ngày 8-9: Chạy ablation chính (Group A, C)**
+- A1, A2, A3, A4 (perception ablation).
+- C1, C2, C3, C4 (control ablation).
+- Trên cùng golden test set, lưu lại kết quả.
 
-### Tuan 4
+**Ngày 10-11: Tổng hợp và tính thống kê**
+- Tính `mean +- std` cho từng ablation trên n=3 lần chạy.
+- Tính `paired t-test` hoặc `Wilcoxon` cho so sánh chính:
+  - single vs ensemble
+  - 2D KF vs 3D KF without switching
+  - fixed vs adaptive switching
+  - best baseline vs full AuraBeam
+- Ghi lại p-value và kết luận.
 
-- Chay sensitivity analysis.
-- Gom ket qua latency va stability.
+**Ngày 12-14: Tạo hình và qualitative evidence**
+- Tạo 2-3 hình qualitative: failure case + recovery.
+- Tạo timeline figure: occlusion interval, grid suppression.
+- Tạo bảng baseline tracking và ablation comparison.
+- Chuẩn bị hình pipeline dùng bỏ (có thể để sang tuần 3 nếu cần).
 
-### Tuan 5
+### Tuần 3 (Ngày 15-21): Viết lạp và hoàn thiện
 
-- Tong hop `mean +- std`.
-- Chay significance test.
-- Kiem tra consistency ket qua.
+**Ngày 15-17: Viết Results và Discussion**
+- Viết Results theo bảng và hình đã có.
+- Viết Discussion từ bằng chứng: tách bảg gain, ưu tiên nào chính?
+- Nối kết nối tới claim:
+  - Ensemble + Weighted NMS có tăng robustness không? (đưa bảng A).
+  - 3D KF + switching có duy trì tracking không? (đưa bảng B).
+  - Control outcome có từng giảm không? (đưa bảng C).
 
-### Tuan 6
+**Ngày 18-19: Làm sạch manuscript**
+- Sửa notation, notation khớp với implementation.
+- Sửa bảng: format, unit, footnote.
+- Đảm bảo caption: mỗi hình phải rõ mục đích.
+- Bỏ placeholder, giữ chỉ hình thức.
+- Kiểm tra cross-reference giữa các bảng/hình.
 
-- Tao hinh qualitative.
-- Tao hinh pipeline.
-- Tao trajectory plots.
+**Ngày 20-21: Xem xét toàn thể và finalize**
+- Đọc lại toàn bộ: intro -> method -> result -> discussion -> conclusion cần thảo xuất?
+- Kiểm tra limitations: trung thực, không lỏ cảm? 
+- Sửa references, abstract, keywords.
+- Đóng góp khoa học đã rõ rõ chưa?
 
-### Tuan 7
+## 8. Checklist trước khi gửi Q2 (3 tuần - bắt buộc vs tùy chọa)
 
-- Viet lai Results.
-- Viet lai Discussion.
-- Lam sach limitations.
+### Bắt buộc (phải có)
 
-### Tuan 8
+- [ ] Claim khoa học rõ và nhất quán (tối đa 3 claim).
+- [ ] Có baseline tracking đầy đủ (B1, B2, B3, B4).
+- [ ] Có ablation cho ensemble và adaptive switching (A1 vs A4, B3 vs B4).
+- [ ] Có `mean +- std` (n >= 3).
+- [ ] Có significance test cho so sánh chính (paired t-test).
+- [ ] Có hình qualitative: failure + recovery (ít nhất 2 hình).
+- [ ] Bảng tracking baseline và ablation: có cột mean, std, p-value.
+- [ ] Training / implementation / manuscript khớp nhau.
+- [ ] Discussion logic: bằng chứng -> interpretations -> claim.
 
-- Sua toan bo manuscript.
-- So khop caption, notation, references.
-- Chon journal phu hop va canh chinh format.
+### Tùy chọa (nếu có đủ thời gian)
 
-## 8. Checklist truoc khi gui Q2
+- [ ] Pipeline figure end-to-end.
+- [ ] Sensitivity analysis cho 1 tham số chính.
+- [ ] Trajectory plot timeline.
+- [ ] Bảng ablation phụ (hold-time, NMS variants).
 
-Can dat duoc cac muc sau:
+### Dừng retrain trừ khi:
 
-- [ ] Claim khoa hoc ro va nhat quan.
-- [ ] Co baseline tracking day du.
-- [ ] Co ablation cho ensemble, NMS, hold-time, switching.
-- [ ] Co sensitivity analysis cho tham so chinh.
-- [ ] Co `mean +- std`.
-- [ ] Co significance test cho so sanh quan trong.
-- [ ] Co hinh qualitative bat buoc.
-- [ ] Co pipeline figure end-to-end.
-- [ ] Bang ket qua khong loi format, khong lap so lieu.
-- [ ] Training / implementation / manuscript khop nhau.
-- [ ] Discussion va limitations trung thuc, co chieu sau.
+- [ ] Ensemble gain từ "may mắn" không phải từ design (phải có bằng chứng).
+- [ ] Single baseline recall < 50% trên hard case (lightning/heavy rain).
 
-## 9. Uu tien neu it thoi gian
+## 9. Ư u tiên nếu ít thời gian (3 tuần)
 
-Neu khong du thoi gian lam het, thu tu uu tien la:
+Với 3 tuần, lần lượt ưu tiên:
 
-1. Hoan thien `tracking baselines`
-2. Them `adaptive switching ablation`
-3. Bao cao `mean +- std`
-4. Them qualitative figures
-5. Chay significance test
-6. Chay sensitivity analysis
-7. Xem xet retrain
+1. Hoàn thiện `tracking baselines` (B1-B4) - bắt buộc.
+2. Chạy ablation quan trọng: `ensemble` và `adaptive switching` - bắt buộc.
+3. Báo cáo `mean +- std` và `paired t-test` - bắt buộc.
+4. Tạo qualitative figures (failure case + recovery) - bắt buộc.
+5. Pipeline figure và timeline - nếu đủ thời gian.
+6. Sensitivity analysis - bỏ, chỉ chọa một tham số quan trọng nhất nếu có đủ thời gian (ưu tiên `tau_conf`).
+7. Retrain - bỏ, dùng khi có bằng chứng thực sự cần thiết.
 
-## 10. Dau ra cuoi cung mong muon
+## 10. Đầu ra cuối cùng mong muốn
 
-Sau workflow nay, bai bao phai chuyen tu:
+Sau workflow này, bài báo phải chuyển từ:
 
-- "He thong nay hoat dong kha tot tren vai scenario"
+- "Hệ thống này hoạt động khá tốt trên vài scenario"
 
-thanh:
+thành:
 
-- "Chung toi co mot system-level contribution ro rang, duoc kiem chung bang baseline day du, ablation co kiem soat, thong ke dang tin cay, va control-level metrics phu hop voi bai toan ADB."
+- "Chung tôi có một system-level contribution rõ ràng, được kiểm chứng bằng baseline đầy đủ, ablation có kiểm soát, thống kê đáng tin cậy, và control-level metrics phù hợp với bài toán ADB."
 
-Do la muc toi thieu de co co hoi nghiem tuc voi mot venue Q2.
+Đó là mục tối thiểu để có cơ hội nghiêm túc với một venue Q2.
