@@ -1,0 +1,11 @@
+experiment_name,scenario_name,num_runs,gssr_percent_mean,gssr_percent_std,missed_glare_rate_percent_mean,missed_glare_rate_percent_std,false_darkening_rate_percent_mean,false_darkening_rate_percent_std,rmse_xy_px_mean,rmse_xy_px_std,jitter_reduction_percent_mean,jitter_reduction_percent_std,avg_total_latency_ms_mean,avg_total_latency_ms_std,occlusion_gssr_percent_mean,occlusion_gssr_percent_std,occlusion_missed_glare_rate_percent_mean,occlusion_missed_glare_rate_percent_std,occlusion_false_darkening_rate_percent_mean,occlusion_false_darkening_rate_percent_std,occlusion_rmse_xy_px_mean,occlusion_rmse_xy_px_std
+b1_yolo_only,fogging_1,5,31.6279,0.0,51.1628,0.0,7.4419,0.0,159.5043,0.0,0.0,0.0,250.3251,9.7239,45.614,0.0,33.3333,0.0,5.2632,0.0,101.448,0.0
+b1_yolo_only,night_1,5,75.0,0.0,3.9474,0.0,7.8947,0.0,98.5069,0.0,0.0,0.0,257.4929,21.7811,,,,,,,,
+b1_yolo_only,norm_1,5,94.1176,0.0,0.0,0.0,4.902,0.0,36.7653,0.0,0.0,0.0,251.2431,8.9008,,,,,,,,
+b1_yolo_only,rain_1,5,46.1187,0.0,40.1826,0.0,12.7854,0.0,238.1313,0.0,0.0,0.0,250.1254,9.6958,22.2222,0.0,77.7778,0.0,0.0,0.0,25.7165,0.0
+b1_yolo_only,thunder_1,5,34.728,0.0,4.6025,0.0,0.4184,0.0,78.6716,0.0,0.0,0.0,250.1775,9.6337,0.0,0.0,44.4444,0.0,0.0,0.0,52.7558,0.0
+b2_detector_kf2d,fogging_1,5,67.4419,0.0,2.7907,0.0,9.7674,0.0,136.2706,0.0,8.0776,0.0,247.5005,4.2782,66.6667,0.0,0.0,0.0,1.7544,0.0,47.782,0.0
+b2_detector_kf2d,night_1,5,78.9474,0.0,0.0,0.0,5.2632,0.0,36.144,0.0,2.908,0.0,260.5983,30.0494,,,,,,,,
+b2_detector_kf2d,norm_1,5,92.6471,0.0,0.0,0.0,7.3529,0.0,16.4931,0.0,-3.442,0.0,279.7972,73.5361,,,,,,,,
+b2_detector_kf2d,rain_1,5,81.7352,0.0,3.1963,0.0,4.1096,0.0,80.1791,0.0,-10.4555,0.0,273.6485,58.3701,77.7778,0.0,0.0,0.0,22.2222,0.0,91.9036,0.0
+b2_detector_kf2d,thunder_1,5,34.728,0.0,0.0,0.0,2.5105,0.0,11.7134,0.0,16.3348,0.0,249.0185,4.5952,0.0,0.0,0.0,0.0,0.0,0.0,5.0433,0.0
