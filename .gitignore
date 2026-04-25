@@ -47,10 +47,6 @@ demo_video/
 comparision_3_models/
 ensemble_metric/
 single_metric/
-artifacts/results*/
-artifacts/tables/*.csv
-artifacts/metrics/
-artifacts/figures/
 metrics*.json
 per_frame_metrics*.csv
 model_comparison_metrics*.json

@@ -1,0 +1,28 @@
+{
+  "source": "demo_video/thunder_1.mp4",
+  "primary_model": "model/yolov5.pt",
+  "secondary_model": "model/model_ai.pt",
+  "detector_mode": "ensemble_nms",
+  "tracking_mode": "raw",
+  "observation_mode": "fixed",
+  "control_mode": "direct",
+  "tau_conf": 0.35,
+  "adaptive_min_low_conf_frames": 2,
+  "hold_time_frames": 5,
+  "track_hold_seconds": 1.0,
+  "radar_initial_z": 100.0,
+  "radar_target_speed": 15.0,
+  "fuse_iou_threshold": 0.35,
+  "gt_csv": null,
+  "gt_coco": null,
+  "gt_folder": "thunder_1",
+  "gt_align": "uniform",
+  "occlusion_json": "configs/occlusion_intervals.json",
+  "occlusion_intervals": [
+    {
+      "start": 25,
+      "end": 33
+    }
+  ],
+  "gssr_iou_threshold": 0.5
+}
