@@ -5,7 +5,7 @@ Tai lieu nay danh cho cong su chay cac batch `A1-A4`, `B1-B2`, `C1-C4` tren Wind
 ## 1. Yeu cau
 
 - Git
-- Python 3.10 hoac 3.11
+- Python
 - Windows PowerShell
 
 Repo sau khi clone can co san cac thu muc/file sau:
