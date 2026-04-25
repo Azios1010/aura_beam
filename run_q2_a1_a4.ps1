@@ -1,11 +1,11 @@
-$ErrorActionPreference = "Stop"
+
 
 param(
     [string]$PythonExe = "python",
     [int]$StartRun = 1,
     [int]$EndRun = 5
 )
-
+$ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 for ($i = $StartRun; $i -le $EndRun; $i++) {
