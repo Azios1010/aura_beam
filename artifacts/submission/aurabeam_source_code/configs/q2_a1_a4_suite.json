@@ -1,0 +1,64 @@
+{
+  "output_root": "artifacts/results_q2_a1_a4",
+  "occlusion_json": "configs/occlusion_intervals.json",
+  "tau_conf": 0.35,
+  "adaptive_min_low_conf_frames": 2,
+  "switch_policy": "best_conf",
+  "runs": [
+    {
+      "name": "a1_primary_only",
+      "detector_mode": "primary",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "a2_secondary_only",
+      "detector_mode": "secondary",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "a3_ensemble_nms",
+      "detector_mode": "ensemble_nms",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "a4_ensemble_weighted",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "night_1",
+      "source": "demo_video/night_1.mp4",
+      "gt_folder": "night_1"
+    },
+    {
+      "name": "norm_1",
+      "source": "demo_video/norm_1.mp4",
+      "gt_folder": "norm_1"
+    },
+    {
+      "name": "rain_1",
+      "source": "demo_video/rain_1.mp4",
+      "gt_folder": "rain_1"
+    },
+    {
+      "name": "thunder_1",
+      "source": "demo_video/thunder_1.mp4",
+      "gt_folder": "thunder_1"
+    },
+    {
+      "name": "fogging_1",
+      "source": "demo_video/fogging_1.mp4",
+      "gt_folder": "fogging_1"
+    }
+  ]
+}

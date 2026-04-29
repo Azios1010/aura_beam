@@ -51,13 +51,6 @@ metrics*.json
 per_frame_metrics*.csv
 model_comparison_metrics*.json
 model_comparison_per_class*.csv
-statistic
-notebooks/dataset_robo.txt
-metrics_ultralytics
-figs
-artifacts/tables
-artifacts/figures
-
 
 # Local datasets / extracted frames
 fogging_1/

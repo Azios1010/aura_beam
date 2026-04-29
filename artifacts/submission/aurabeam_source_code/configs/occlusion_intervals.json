@@ -1,0 +1,15 @@
+{
+  "scenarios": {
+    "rain_1": [
+      { "start": 117, "end": 125 }
+    ],
+    "thunder_1": [
+      { "start": 25, "end": 33 }
+    ],
+    "fogging_1": [
+      { "start": 33, "end": 56 },
+      { "start": 137, "end": 157 },
+      { "start": 188, "end": 199 }
+    ]
+  }
+}

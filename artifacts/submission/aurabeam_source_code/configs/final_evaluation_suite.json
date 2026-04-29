@@ -1,0 +1,49 @@
+{
+  "output_root": "artifacts/results_final_eval",
+  "occlusion_json": "configs/occlusion_intervals.json",
+  "tau_conf": 0.35,
+  "adaptive_min_low_conf_frames": 2,
+  "runs": [
+    {
+      "name": "b3_detector_kf3d_fixed",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "fixed",
+      "control_mode": "hold"
+    },
+    {
+      "name": "b4_full_aurabeam",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "adaptive",
+      "control_mode": "hold"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "night_1",
+      "source": "demo_video/night_1.mp4",
+      "gt_folder": "night_1"
+    },
+    {
+      "name": "norm_1",
+      "source": "demo_video/norm_1.mp4",
+      "gt_folder": "norm_1"
+    },
+    {
+      "name": "rain_1",
+      "source": "demo_video/rain_1.mp4",
+      "gt_folder": "rain_1"
+    },
+    {
+      "name": "thunder_1",
+      "source": "demo_video/thunder_1.mp4",
+      "gt_folder": "thunder_1"
+    },
+    {
+      "name": "fogging_1",
+      "source": "demo_video/fogging_1.mp4",
+      "gt_folder": "fogging_1"
+    }
+  ]
+}

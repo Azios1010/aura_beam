@@ -1,0 +1,127 @@
+{
+  "output_root": "artifacts/results",
+  "occlusion_json": "configs/occlusion_intervals.json",
+  "runs": [
+    {
+      "name": "b1_yolo_only",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "b2_detector_kf2d",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf2d",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "b3_detector_kf3d_fixed",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "b4_full_aurabeam",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "adaptive",
+      "control_mode": "hold"
+    },
+    {
+      "name": "a1_primary_only",
+      "detector_mode": "primary",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "a2_secondary_only",
+      "detector_mode": "secondary",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "a3_ensemble_nms",
+      "detector_mode": "ensemble_nms",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "a4_ensemble_weighted",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "raw",
+      "observation_mode": "fixed",
+      "control_mode": "direct"
+    },
+    {
+      "name": "c1_no_hold_time",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "adaptive",
+      "control_mode": "direct"
+    },
+    {
+      "name": "c2_hold_time_enabled",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "adaptive",
+      "control_mode": "hold"
+    },
+    {
+      "name": "c3_fixed_observation",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "fixed",
+      "control_mode": "hold"
+    },
+    {
+      "name": "c4_adaptive_switching",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "adaptive",
+      "control_mode": "hold"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "night_1",
+      "source": "demo_video/night_1.mp4",
+      "gt_folder": "night_1"
+    },
+    {
+      "name": "norm_1",
+      "source": "demo_video/norm_1.mp4",
+      "gt_folder": "norm_1"
+    },
+    {
+      "name": "norm_2",
+      "source": "demo_video/norm_2.mp4",
+      "gt_folder": "norm_2"
+    },
+    {
+      "name": "rain_1",
+      "source": "demo_video/rain_1.mp4",
+      "gt_folder": "rain_1"
+    },
+    {
+      "name": "snow_12",
+      "source": "demo_video/snow_12.mp4",
+      "gt_folder": "snow_12"
+    },
+    {
+      "name": "fogging_1",
+      "source": "demo_video/fogging_1.mp4",
+      "gt_folder": "fogging_1"
+    },
+    {
+      "name": "thunder_1",
+      "source": "demo_video/thunder_1.mp4",
+      "gt_folder": "thunder_1"
+    }
+  ]
+}

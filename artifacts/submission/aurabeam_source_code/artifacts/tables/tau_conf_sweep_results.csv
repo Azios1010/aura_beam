@@ -1,0 +1,4 @@
+tau_conf,experiment_name,scenario_name,gssr_percent,missed_glare_rate_percent,false_darkening_rate_percent,occlusion_gssr_percent,occlusion_missed_glare_rate_percent,occlusion_false_darkening_rate_percent,rmse_xy_px,occlusion_rmse_xy_px,mode_switch_count,adaptive_z_only_frame_ratio_percent,low_conf_candidate_frame_ratio_percent,adaptive_min_low_conf_frames,avg_total_latency_ms
+0.35,b4_tau_0p35,rain_1,85.8447,0.9132,13.242,100.0,0.0,0.0,81.1569,82.0801,9,4.1096,9.589,2,353.8783
+0.35,b4_tau_0p35,thunder_1,99.1632,0.0,0.8368,80.0,0.0,20.0,11.7152,6.5509,1,0.4184,1.2552,2,326.2023
+0.35,b4_tau_0p35,fogging_1,89.3023,0.9302,9.7674,98.2456,0.0,1.7544,136.9456,48.1794,35,16.2791,27.4419,2,291.8734

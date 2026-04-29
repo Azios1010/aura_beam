@@ -1,0 +1,9 @@
+{
+  "scenarios": {
+    "rain_3": [
+      { "start": 61, "end": 73 },
+      { "start": 156, "end": 166 },
+      { "start": 48, "end": 58 }
+    ]
+  }
+}

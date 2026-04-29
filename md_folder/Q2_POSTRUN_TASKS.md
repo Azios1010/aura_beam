@@ -89,6 +89,7 @@ python aggregate_results.py --results-root artifacts/results_final_q2_lock --out
 Phu trach:
 
 - doc CSV aggregate
+- voi `A1-A4`, tong hop them metric detector
 - map cot CSV vao cac bang trong manuscript
 - trich them chi so chua co trong CSV tu `summary.json`
 - chuan bi bang "gan cuoi" de dua vao `q2_report.tex`
@@ -103,9 +104,16 @@ Dau ra phai nop:
   - bang B3/B4 final protocol
 - danh sach chi so phai lay them tu `summary.json`
 
+Bo metric toi thieu cho tung nhom:
+
+- `A1-A4`: `mAP@0.5`, `Precision`, `Recall`, `GSSR`, `Occl. GSSR`
+- `B1-B4`: `RMSE`, `JR%`, `GSSR`, `FDR`, `MGR`, `Occl. GSSR`, `Occl. FDR`
+- `C1-C4`: `GSSR`, `FDR`, `MGR`, `Occl. GSSR`, `Occl. FDR`, `Occl. MGR`, `Switch count`
+
 Checklist:
 
 - [ ] xac dinh bang nao trong `q2_report.tex` dang con placeholder
+- [ ] rieng `A1-A4` phai co du `mAP@0.5`, `Precision`, `Recall`
 - [ ] dien du cac cot mean/std tu CSV
 - [ ] lay them `mode_switch_count` neu bang can
 - [ ] danh dau ro cho nao chua co `p-value`
@@ -124,6 +132,7 @@ Can tap trung vao cac bang placeholder sau:
 Phu trach:
 
 - tinh them `p-value` cho cac so sanh chinh
+- kiem tra xem metric detector cua `A1-A4` co khop voi phan perception ablation khong
 - kiem tra xem so lieu trong CSV co hop ly khong
 - doi chieu summary raw va bang aggregate
 - viet ket luan ngan: khac biet nao co y nghia, khac biet nao khong
@@ -190,6 +199,7 @@ Khong nen de Nguoi 2 va Nguoi 4 cung sua bang trong `q2_report.tex` cung luc.
 - kiem tra ten scenario trong CSV va trong manuscript co trung nhau khong
 - kiem tra `B3` va `C3` co bi nham nhau khong
 - kiem tra metric full-sequence va occlusion-window co bi tron lan khong
+- kiem tra `A1-A4` da co du `mAP`, `Precision`, `Recall` chua
 - kiem tra bang nao dang viet "mean of five replays"
 - kiem tra config nao dung `best_conf`, config nao dung policy khac
 - kiem tra folder output co bi lay nham `results_final_eval` va `results_final_q2_lock` khong

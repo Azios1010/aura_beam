@@ -1,0 +1,37 @@
+{
+  "output_root": "artifacts/results_occlusion_screening",
+  "occlusion_json": "configs/occlusion_intervals.json",
+  "runs": [
+    {
+      "name": "c3_fixed_observation",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "fixed",
+      "control_mode": "hold"
+    },
+    {
+      "name": "c4_adaptive_switching",
+      "detector_mode": "ensemble_weighted",
+      "tracking_mode": "kf3d",
+      "observation_mode": "adaptive",
+      "control_mode": "hold"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "rain_1",
+      "source": "demo_video/rain_1.mp4",
+      "gt_folder": "rain_1"
+    },
+    {
+      "name": "thunder_1",
+      "source": "demo_video/thunder_1.mp4",
+      "gt_folder": "thunder_1"
+    },
+    {
+      "name": "fogging_1",
+      "source": "demo_video/fogging_1.mp4",
+      "gt_folder": "fogging_1"
+    }
+  ]
+}
