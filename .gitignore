@@ -58,6 +58,7 @@ figs
 artifacts/tables
 artifacts/figures
 artifacts/submission/aurabeam_source_code/
+artifacts/submission/*.zip
 
 # Local datasets / extracted frames
 fogging_1/
