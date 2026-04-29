@@ -57,7 +57,7 @@ metrics_ultralytics
 figs
 artifacts/tables
 artifacts/figures
-
+artifacts/submission/aurabeam_source_code/
 
 # Local datasets / extracted frames
 fogging_1/
